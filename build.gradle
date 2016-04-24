@@ -22,6 +22,7 @@ plugins {
     id 'scala'
     id "com.github.kt3k.coveralls" version "2.6.3"
     id "net.saliman.cobertura" version "2.3.1"
+    id "org.scoverage" version "2.0.1"
 }
 
 apply plugin: 'scalaStyle'
@@ -43,6 +44,9 @@ dependencies {
     testCompile 'org.scalatest:scalatest_2.11:2.2.5'
     testRuntime 'org.scala-lang.modules:scala-xml_2.11:1.0.5'
     testRuntime "org.slf4j:slf4j-api:1.7.10"
+
+    scoverage 'org.scoverage:scalac-scoverage-plugin_2.11:1.1.0', 'org.scoverage:scalac-scoverage-runtime_2.11:1.1.0'
+
 }
 
 scalaStyle {
@@ -55,4 +59,9 @@ scalaStyle {
 cobertura{
     coberturaVersion = '2.1.1'
     coverageFormats = ['xml']
+}
+
+checkScoverage {
+    coverageType = 'Line'
+    minimumRate = 0.5
 }

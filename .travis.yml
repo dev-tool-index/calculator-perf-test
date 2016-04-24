@@ -4,7 +4,7 @@ scala:
    - 2.11.2
 
 script:
-  - ./gradlew check
+  - ./gradlew checkScoverage
 
 after_success:
-  - ./gradlew cobertura coveralls
+  - ./gradlew reportScoverage coveralls
