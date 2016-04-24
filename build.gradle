@@ -7,12 +7,24 @@
  * user guide available at https://docs.gradle.org/2.10/userguide/scala_plugin.html
  */
 
+buildscript {
+    repositories {
+        jcenter() // only work after gradle 1.7
+    }
+
+    dependencies {
+        classpath 'org.github.ngbinh.scalastyle:gradle-scalastyle-plugin_2.11:0.8.2'
+    }
+}
+
 // Apply the scala plugin to add support for Scala
 plugins {
     id 'scala'
     id "com.github.kt3k.coveralls" version "2.6.3"
     id "net.saliman.cobertura" version "2.3.1"
 }
+
+apply plugin: 'scalaStyle'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -33,6 +45,14 @@ dependencies {
     testRuntime "org.slf4j:slf4j-api:1.7.10"
 }
 
+scalaStyle {
+    configLocation = "mega-project/sub-project/scalastyle_config.xml"
+    includeTestSourceDirectory = true
+    source = "src/main/scala"
+    testSource = "src/test/scala"
+}
+
 cobertura{
+    coberturaVersion = '2.1.1'
     coverageFormats = ['xml']
 }
