@@ -37,11 +37,19 @@ dependencies {
     // We use Scala 2.11 in our library project
     compile 'org.scala-lang:scala-library:2.11.7'
     compile "io.gatling.highcharts:gatling-charts-highcharts:2.1.6"
+    compile 'org.apache.httpcomponents:httpclient:4.5.2'
+
     // We use Scalatest for testing our library
     testCompile 'junit:junit:4.12'
     testCompile 'org.scalatest:scalatest_2.11:2.2.5'
     testRuntime 'org.scala-lang.modules:scala-xml_2.11:1.0.5'
     testRuntime "org.slf4j:slf4j-api:1.7.10"
+
+    compile "io.gatling.highcharts:gatling-charts-highcharts:2.1.6"
+    compile 'org.apache.httpcomponents:httpclient:4.5.2'
+
+    gatlingCompile 'org.apache.httpcomponents:httpclient:4.5.2'
+    gatlingRuntime 'org.apache.httpcomponents:httpclient:4.5.2'
 }
 
 gatling {
