@@ -20,6 +20,7 @@ buildscript {
 // Apply the scala plugin to add support for Scala
 plugins {
     id 'scala'
+    id "com.github.lkishalmi.gatling" version "0.3.0"
     id "com.github.kt3k.coveralls" version "2.6.3"
     id "net.saliman.cobertura" version "2.3.1"
 }
@@ -35,12 +36,20 @@ repositories {
 dependencies {
     // We use Scala 2.11 in our library project
     compile 'org.scala-lang:scala-library:2.11.7'
-
+    compile "io.gatling.highcharts:gatling-charts-highcharts:2.1.6"
     // We use Scalatest for testing our library
     testCompile 'junit:junit:4.12'
     testCompile 'org.scalatest:scalatest_2.11:2.2.5'
     testRuntime 'org.scala-lang.modules:scala-xml_2.11:1.0.5'
     testRuntime "org.slf4j:slf4j-api:1.7.10"
+}
+
+gatling {
+    toolVersion = '2.2.0'
+    jvmArgs = [ '-server', '-Xms512M', '-Xmx512M' ]
+    simulations = {
+        include "**/*Simulation.scala"
+    }
 }
 
 cobertura{
