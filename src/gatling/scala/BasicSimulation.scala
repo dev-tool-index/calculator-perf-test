@@ -11,7 +11,7 @@ class BasicSimulation extends Simulation {
   val feeder = csv("input.csv").random
 
   val httpConf = http // 4
-    .baseURL("http://142.133.111.170:8090")// 5
+    .baseURL("http://192.168.31.223:8090")// 5
     .acceptHeader("application/json;charset=UTF-8") // 6
     .userAgentHeader("Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0")
 
@@ -26,7 +26,7 @@ class BasicSimulation extends Simulation {
   setUp(// 11
     scn.inject(
       //atOnceUsers(1)
-      constantUsersPerSec(200) during(15 seconds)
+      constantUsersPerSec(6) during(60 seconds)
     ) // 12
   ).protocols(httpConf) // 13
 }
