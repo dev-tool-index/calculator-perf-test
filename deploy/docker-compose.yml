@@ -1,0 +1,30 @@
+version: '2'
+services:
+  mongodb:
+    command: "--rest"
+    hostname: my-mongo
+    image: mongo:3.2
+    ports:
+      - "27017:27017"
+      - "28017:28017"
+  calculator-service-1:
+    image: devtoolindex/calculator-service:3.3
+    ports:
+      - "8090:8080"
+    links:
+      - mongodb
+  calculator-service-2:
+    image: devtoolindex/calculator-service:3.3
+    ports:
+      - "8091:8080"
+    links:
+      - mongodb
+  nginx:
+    image: nginx:1.10
+    ports:
+      - "8092:80"
+    links:
+      - calculator-service-1
+      - calculator-service-2
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
